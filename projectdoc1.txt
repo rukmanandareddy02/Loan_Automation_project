@@ -1,0 +1,37 @@
+users - 3 users - Manager, clerk, customer
+
+
+
+Customer - apply for loan
+Clerk - he can add details of customer and apply for loan for customer
+manager - review and accept or reject
+
+Q - how can we stop a customer creating a manager account? 
+Q - Related to bank account ?
+Q - balance?
+
+customer - login
+	-> Browse Loans
+	-> Add his details
+	-> select and apply
+	-> status and show his application
+
+
+Clerk - login
+	->add a customer
+	->apply for loan for a customer
+	->see all details related to customer
+
+manager - login
+	->add a customer
+	 -> verify and update the status 
+    
+
+tables - 1. Customer 
+	 2. Manager
+	 3. Clerk
+	 4. Loan - manual table 
+	 5. Loan Application - status column - reason column
+	 6. documents
+
+
