@@ -33,7 +33,6 @@ public class CustomerDataAccess implements CustomerDAInterface{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
 	public Customer viewCustomerDetails(@PathParam("value") long value) throws Exception {
 		// TODO Auto-generated method stub
 		JDBCApp jdbc = new JDBCApp();
@@ -77,6 +76,24 @@ public class CustomerDataAccess implements CustomerDAInterface{
 			throw e;
 		}
 		return loans;
+	}
+
+	@Override
+	public Customer viewCustomerDetailsById(long CustomerId) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Customer> getAllCustomers() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Loan getLoanApplicationById(long ApplicationNo) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
