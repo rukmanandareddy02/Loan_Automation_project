@@ -1,0 +1,5 @@
+package com.java.databasehandler;
+
+public class JDBCApp {
+
+}
