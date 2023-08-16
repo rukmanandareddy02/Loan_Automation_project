@@ -7,7 +7,8 @@ import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
 public interface DataAccessInterface {
-	boolean applyForLoan() throws Exception;
+	boolean addDetails(Customer customer) throws Exception;
+	boolean applyForLoan(LoanApplication loanApplication) throws Exception;
 	Customer viewCustomerDetailsById(long customerId) throws Exception;
 	ArrayList<Customer> getAllCustomers() throws Exception;
 	LoanApplication getLoanApplicationById(long applicationNo) throws Exception;

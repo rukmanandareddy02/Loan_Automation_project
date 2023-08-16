@@ -18,11 +18,57 @@ public class DataAccess implements DataAccessInterface{
 	PreparedStatement ps = jdbc.getPs();
 
 	@Override
-	public boolean applyForLoan() throws Exception {
+	public boolean addDetails(Customer customer) throws Exception {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			ps = connection.prepareStatement("INSERT INTO CUSTOMERS(CUSTOMER_ID,NAME,GENDER,MOBILE) values(?,?,?,?)");
+			ps.setLong(1, customer.getCustomerId());
+			ps.setString(2, customer.getName());
+			ps.setString(3, customer.getGender());
+			ps.setLong(4, customer.getMobileNumber());
+			int res = ps.executeUpdate();
+			if (res <= 0) {
+				System.out.println("did not inserted");
+				try {
+					jdbc.closeConnection(connection);
+				} catch (SQLException e) {
+					throw e;
+				}
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return true;
 	}
-
+	
+	public boolean applyForLoan(LoanApplication loanApplication) throws Exception{
+		try {
+			ps = connection.prepareStatement("INSERT INTO LOAN_APPLICATION(APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE) values(?,?,?,?,?,?,?)");
+			ps.setLong(1, loanApplication.getApplicationNo());
+			ps.setLong(2, loanApplication.getCustomerId());
+			ps.setString(3, loanApplication.getLoanType());
+			ps.setLong(4, loanApplication.getLoanAmount());
+			ps.setString(5, loanApplication.getStatus());
+			ps.setString(6, loanApplication.getRemarks());
+			ps.setLong(7, loanApplication.getBalance());
+			int res = ps.executeUpdate();
+			if (res <= 0) {
+				System.out.println("did not inserted");
+				try {
+					jdbc.closeConnection(connection);
+				} catch (SQLException e) {
+					throw e;
+				}
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
 	@Override
 	public Customer viewCustomerDetailsById(long customerId) throws Exception {
 		// TODO Auto-generated method stub
@@ -55,12 +101,14 @@ public class DataAccess implements DataAccessInterface{
 			return null;
 		}
 		while(res.next()) {
-			customers.add(new Customer(res.getLong(1),res.getString(2),res.getString(3),res.getLong(4))); 
+			customers.add(new Customer(res.getLong(1),res.getString(2),res.getString(3),res.getLong(4)));
+			
 		}
 		}
 		catch(SQLException e) {
 			throw e;
 		}
+		//System.out.println(customers);
 		return customers;
 	}
 
@@ -132,7 +180,7 @@ public class DataAccess implements DataAccessInterface{
 		ArrayList<LoanApplication> applications = new ArrayList<>();
 		try {
 		ps = connection.prepareStatement("select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE CUSTOMER_ID =?");
-		ps.setLong(2, customerId);
+		ps.setLong(1, customerId);
 		ResultSet res = ps.executeQuery();
 		if(res.getFetchSize()==0) {
 			return null;
