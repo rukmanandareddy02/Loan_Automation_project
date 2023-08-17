@@ -55,13 +55,12 @@ public class Service {
 //	@GET
 //	@Path("/onecustomer/{customerId}")
 //	@Produces(MediaType.APPLICATION_JSON)
-	public Customer viewCustomerDetailsById(int customerId) {
+	public Customer viewCustomerDetailsById(int customerId) throws Exception {
 		try {
 			return dataAccess.viewCustomerDetailsById(customerId);
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw e;
 		}
-		return null;
 	}
 //	@GET
 //	@Path("/allrecords")

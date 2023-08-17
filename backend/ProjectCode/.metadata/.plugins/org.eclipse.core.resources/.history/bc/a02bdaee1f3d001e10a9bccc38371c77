@@ -1,0 +1,83 @@
+package com.java.services;
+
+import java.util.ArrayList;
+
+import com.java.businesslogic.Service;
+import com.java.entities.Customer;
+import com.java.entities.LoanApplication;
+
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+@Path("/clerk")
+public class ClerkService {
+	Service service = new Service();
+
+	@POST
+	@Path("/addcustomer")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean addDetails(Customer customer) {
+		try {
+			return service.addDetails(customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@POST
+	@Path("/addloanapplication")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean applyForLoan(LoanApplication loanApplication) {
+		try {
+			return service.applyForLoan(loanApplication);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@GET
+	@Path("/applications")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<LoanApplication> getAllApplications(){
+		try {
+			return service.getAllApplications();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@GET
+	@Path("/customers")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Customer> getAllCustomers(){
+		try {
+			return service.getAllCustomers();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@GET
+	@Path("/loanapplications/{loantype}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<LoanApplication> getApplicationsByCId(@PathParam("loantype") String loantype){
+		try {
+			return service.getLoanApplications(loantype);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

@@ -1,0 +1,52 @@
+package com.java.services;
+
+import java.util.ArrayList;
+
+import com.java.businesslogic.Service;
+import com.java.entities.LoanApplication;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+@Path("/manager")
+public class ManagerService {
+	
+	Service service = new Service();
+	public ServiceResponse<Boolean> sendMail() {
+		try {
+			boolean flag = service.sendMail();
+			return new ServiceResponse<Boolean>("data sent",200,flag);
+		} catch (Exception e) {
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
+		}
+	}
+	
+	@GET
+	@Path("/applications")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getAllApplications(){
+		try {
+			ArrayList<LoanApplication> applications = service.getAllApplications();
+			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+	
+	@GET
+	@Path("/loanapplicationsstatus/{status}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<LoanApplication> getApplicationsByStatus(@PathParam("status") String status){
+		try {
+			return service.getApplicationsByStatus(status);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

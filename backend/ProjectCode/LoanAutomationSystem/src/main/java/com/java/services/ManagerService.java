@@ -15,38 +15,38 @@ import jakarta.ws.rs.core.MediaType;
 public class ManagerService {
 	
 	Service service = new Service();
-	public boolean sendMail() {
+	public ServiceResponse<Boolean> sendMail() {
 		try {
-			return service.sendMail();
+			boolean flag = service.sendMail();
+			return new ServiceResponse<Boolean>("data sent",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
 	@GET
 	@Path("/applications")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<LoanApplication> getAllApplications(){
+	public ServiceResponse<ArrayList<LoanApplication>> getAllApplications(){
 		try {
-			return service.getAllApplications();
+			ArrayList<LoanApplication> applications = service.getAllApplications();
+			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 	
 	
 	@GET
 	@Path("/loanapplicationsstatus/{status}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<LoanApplication> getApplicationsByStatus(@PathParam("status") String status){
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByStatus(@PathParam("status") String status){
 		try {
-			return service.getApplicationsByStatus(status);
+			ArrayList<LoanApplication> applications= service.getApplicationsByStatus(status);
+			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 
 }

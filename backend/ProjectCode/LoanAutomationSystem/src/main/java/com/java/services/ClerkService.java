@@ -22,62 +22,62 @@ public class ClerkService {
 	@Path("/addcustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean addDetails(Customer customer) {
+	public ServiceResponse<Boolean> addDetails(Customer customer) {
 		try {
-			return service.addDetails(customer);
+			boolean flag = service.addDetails(customer);
+			return new ServiceResponse<Boolean>("data added",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
 	@POST
 	@Path("/addloanapplication")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean applyForLoan(LoanApplication loanApplication) {
+	public ServiceResponse<Boolean> applyForLoan(LoanApplication loanApplication) {
 		try {
-			return service.applyForLoan(loanApplication);
+			boolean flag = service.applyForLoan(loanApplication);
+			return new ServiceResponse<Boolean>("data added",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
 	@GET
 	@Path("/applications")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<LoanApplication> getAllApplications(){
+	public ServiceResponse<ArrayList<LoanApplication>> getAllApplications(){
 		try {
-			return service.getAllApplications();
+			ArrayList<LoanApplication> applications = service.getAllApplications();
+			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 	
 	@GET
 	@Path("/customers")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Customer> getAllCustomers(){
+	public ServiceResponse<ArrayList<Customer>> getAllCustomers(){
 		try {
-			return service.getAllCustomers();
+			ArrayList<Customer> customers = service.getAllCustomers();
+			return new ServiceResponse<ArrayList<Customer>>("data found",200,customers);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<ArrayList<Customer>>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 	
 	@GET
 	@Path("/loanapplications/{loantype}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<LoanApplication> getApplicationsByCId(@PathParam("loantype") String loantype){
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByCId(@PathParam("loantype") String loantype){
 		try {
-			return service.getLoanApplications(loantype);
+			ArrayList<LoanApplication> applications = service.getLoanApplications(loantype);
+			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 
 }

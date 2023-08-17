@@ -9,8 +9,10 @@ import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
@@ -24,74 +26,74 @@ public class CustomerService {
 	@Path("/addcustomer")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean addDetails(Customer customer) {
+	public ServiceResponse<Boolean> addDetails(Customer customer) {
 		try {
-			return service.addDetails(customer);
+			boolean flag = service.addDetails(customer);
+			return new ServiceResponse<Boolean>("data added",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
 	@POST
 	@Path("/addloanapplication")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean applyForLoan(LoanApplication loanApplication) {
+	public ServiceResponse<Boolean> applyForLoan(LoanApplication loanApplication) {
 		try {
-			return service.applyForLoan(loanApplication);
+			boolean flag = service.applyForLoan(loanApplication);
+			return new ServiceResponse<Boolean>("data added",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
 	@GET
 	@Path("/viewcustomer/{customerId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Customer viewCustomerDetailsById(@PathParam("customerId") int customerId) {
+	public ServiceResponse<Customer> viewCustomerDetailsById(@PathParam("customerId") int customerId) {
 		try {
-			return service.viewCustomerDetailsById(customerId);
+			Customer customer = service.viewCustomerDetailsById(customerId);
+			return new ServiceResponse<Customer>("data found",200,customer);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Customer>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 	
 	@GET
 	@Path("/getapplication/{applicationNo}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public LoanApplication getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
+	public ServiceResponse<LoanApplication> getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
 		try {
-			return service.getLoanApplicationById(applicationNo);
+			LoanApplication loanApplication = service.getLoanApplicationById(applicationNo);
+			return new ServiceResponse<LoanApplication>("data found",200,loanApplication);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<LoanApplication>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 	
 	@GET
 	@Path("/loans")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Loan> browseLoans(){
+	public ServiceResponse<ArrayList<Loan>> browseLoans(){
 		try {
-			return service.browseLoans();
+			ArrayList<Loan> loans = service.browseLoans();
+			return new ServiceResponse<ArrayList<Loan>>("data found",200,loans);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<ArrayList<Loan>>(e.getMessage(),500,null);
 		}
-		return null;
 	}
 	
-	@GET
+	@DELETE
 	@Path("/deleteapplication/{applicationNo}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public boolean deleteApplication(@PathParam("applicationNo") int applicationNo){
+	public ServiceResponse<Boolean> deleteApplication(@PathParam("applicationNo") int applicationNo){
 		try {
-			return service.deleteApplication(applicationNo);
+			boolean flag = service.deleteApplication(applicationNo);
+			return new ServiceResponse<Boolean>("data found",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
 	
@@ -99,39 +101,38 @@ public class CustomerService {
 	@Path("/register")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean register(CustomerLogin login){
+	public ServiceResponse<Boolean> register(CustomerLogin login){
 		try {
-			return service.register(login);
+			boolean flag = service.register(login);
+			return new ServiceResponse<Boolean>("data added",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 	
-	@POST
+	@GET
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
-	public int login(CustomerLogin login){
+	public ServiceResponse<Integer> login(CustomerLogin login){
 		try {
-			return service.login(login);
+			int p=service.login(login);
+			return new ServiceResponse<Integer>("data found",200,p);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Integer>(e.getMessage(),500,null);
 		}
-		return -1;
 	}
 	
-	@POST
+	@PUT
 	@Path("/update")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public boolean updateCustomer(Customer customer){
+	public ServiceResponse<Boolean> updateCustomer(Customer customer){
 		try {
-			return service.updateCustomer(customer);
+			boolean flag = service.updateCustomer(customer);
+			return new ServiceResponse<Boolean>("data updated",200,flag);
 		} catch (Exception e) {
-			e.printStackTrace();
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
-		return false;
 	}
 
 }

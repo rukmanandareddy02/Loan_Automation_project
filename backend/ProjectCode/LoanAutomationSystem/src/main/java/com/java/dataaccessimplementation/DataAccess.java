@@ -81,9 +81,6 @@ public class DataAccess implements DataAccessInterface {
 					.prepareStatement("select CUSTOMER_ID,NAME,GENDER,MOBILE from CUSTOMERS where CUSTOMER_ID = ?");
 			ps.setInt(1, customerId);
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				customer = new Customer(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4));
 			}
@@ -100,12 +97,8 @@ public class DataAccess implements DataAccessInterface {
 		try {
 			ps = connection.prepareStatement("select CUSTOMER_ID,NAME,GENDER,MOBILE from CUSTOMERS");
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				customers.add(new Customer(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4)));
-
 			}
 		} catch (SQLException e) {
 			throw e;
@@ -123,9 +116,6 @@ public class DataAccess implements DataAccessInterface {
 					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION where APPLICATION_NO=?");
 			ps.setInt(1, applicationNo);
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				loanApplication = new LoanApplication(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4),
 						res.getString(5), res.getString(6), res.getInt(7));
@@ -160,9 +150,6 @@ public class DataAccess implements DataAccessInterface {
 			ps = connection.prepareStatement(
 					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION");
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				applications.add(new LoanApplication(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4),
 						res.getString(5), res.getString(6), res.getInt(7)));
@@ -182,9 +169,6 @@ public class DataAccess implements DataAccessInterface {
 					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE LOAN_TYPE=?");
 			ps.setString(1, loanType);
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				applications.add(new LoanApplication(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4),
 						res.getString(5), res.getString(6), res.getInt(7)));
@@ -204,9 +188,6 @@ public class DataAccess implements DataAccessInterface {
 					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE STATUS=?");
 			ps.setString(1, status);
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				applications.add(new LoanApplication(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4),
 						res.getString(5), res.getString(6), res.getInt(7)));
@@ -231,9 +212,6 @@ public class DataAccess implements DataAccessInterface {
 					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE CUSTOMER_ID =?");
 			ps.setInt(1, customerId);
 			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
-				return null;
-			}
 			while (res.next()) {
 				applications.add(new LoanApplication(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4),
 						res.getString(5), res.getString(6), res.getInt(7)));
@@ -248,10 +226,9 @@ public class DataAccess implements DataAccessInterface {
 		try {
 			ps = connection.prepareStatement("DELETE FROM LOAN_APPLICATION WHERE APPLICATION_NO =?");
 			ps.setInt(1, applicationNo);
-			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
+			int res = ps.executeUpdate();
+			if(res>0)
 				return false;
-			}
 		} catch (SQLException e) {
 			throw e;
 		}
@@ -263,8 +240,8 @@ public class DataAccess implements DataAccessInterface {
 			ps = connection.prepareStatement("INSERT INTO CUSTOMER_LOGIN(EMAIL,PASSWORD) VALUES(?,?)");
 			ps.setString(1, login.getUserName());
 			ps.setString(2, login.getPassword());
-			ResultSet res = ps.executeQuery();
-			if (res.getFetchSize() == 0) {
+			int res = ps.executeUpdate();
+			if (res < 0) {
 				return false;
 			}
 		} catch (SQLException e) {
@@ -281,13 +258,8 @@ public class DataAccess implements DataAccessInterface {
 			ps.setString(1, login.getUserName());
 			ps.setString(2, login.getPassword());
 			ResultSet res = ps.executeQuery();
-			int i = 0;
 			while (res.next()) {
-				i++;
 				p = res.getInt(1);
-			}
-			if (i == 0) {
-				return -1;
 			}
 		} catch (SQLException e) {
 			throw e;
@@ -304,7 +276,6 @@ public class DataAccess implements DataAccessInterface {
 			ps.setInt(3, customer.getMobileNumber());
 			int res = ps.executeUpdate();
 			if (res <= 0) {
-				System.out.println("did not updated");
 				return false;
 			}
 		} catch (SQLException e) {
