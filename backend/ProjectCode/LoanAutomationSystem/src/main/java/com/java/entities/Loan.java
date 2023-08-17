@@ -1,20 +1,20 @@
 package com.java.entities;
 
 public class Loan {
-	long loanId;
+	int loanId;
 	String loanType;
 	public Loan() {
 		super();
 	}
-	public Loan(long loanId, String loanType) {
+	public Loan(int loanId, String loanType) {
 		super();
 		this.loanId = loanId;
 		this.loanType = loanType;
 	}
-	public long getLoanId() {
+	public int getLoanId() {
 		return loanId;
 	}
-	public void setLoanId(long loanId) {
+	public void setLoanId(int loanId) {
 		this.loanId = loanId;
 	}
 	public String getLoanType() {

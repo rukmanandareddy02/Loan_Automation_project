@@ -1,16 +1,16 @@
 package com.java.entities;
 
 public class Customer {
-	long customerId;
+	int customerId;
 	String name;
 	String gender;
-	long mobileNumber;
+	int mobileNumber;
 
 	public Customer() {
 		super();
 	}
 
-	public Customer(long customerId, String name, String gender, long mobileNumber) {
+	public Customer(int customerId, String name, String gender, int mobileNumber) {
 		super();
 		this.customerId = customerId;
 		this.name = name;
@@ -18,11 +18,11 @@ public class Customer {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public long getCustomerId() {
+	public int getCustomerId() {
 		return customerId;
 	}
 
-	public void setCustomerId(long customerId) {
+	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
 
@@ -42,11 +42,11 @@ public class Customer {
 		this.gender = gender;
 	}
 
-	public long getMobileNumber() {
+	public int getMobileNumber() {
 		return mobileNumber;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
+	public void setMobileNumber(int mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
 

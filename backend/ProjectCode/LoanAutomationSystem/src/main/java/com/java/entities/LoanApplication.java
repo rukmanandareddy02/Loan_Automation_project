@@ -1,23 +1,23 @@
 package com.java.entities;
 
 public class LoanApplication {
-	long applicationNo;
-	long CustomerId;
+	int applicationNo;
+	int customerId;
 	String loanType;
-	long loanAmount;
+	int loanAmount;
 	String status;
 	String remarks;
-	long balance;
+	int balance;
 
 	public LoanApplication() {
 		super();
 	}
 
-	public LoanApplication(long applicationNo, long customerId, String loanType, long loanAmount, String status,
-			String remarks, long balance) {
+	public LoanApplication(int applicationNo, int customerId, String loanType, int loanAmount, String status,
+			String remarks, int balance) {
 		super();
 		this.applicationNo = applicationNo;
-		CustomerId = customerId;
+		this.customerId = customerId;
 		this.loanType = loanType;
 		this.loanAmount = loanAmount;
 		this.status = status;
@@ -25,20 +25,20 @@ public class LoanApplication {
 		this.balance = balance;
 	}
 
-	public long getApplicationNo() {
+	public int getApplicationNo() {
 		return applicationNo;
 	}
 
-	public void setApplicationNo(long applicationNo) {
+	public void setApplicationNo(int applicationNo) {
 		this.applicationNo = applicationNo;
 	}
 
-	public long getCustomerId() {
-		return CustomerId;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomerId(long customerId) {
-		CustomerId = customerId;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getLoanType() {
@@ -49,11 +49,11 @@ public class LoanApplication {
 		this.loanType = loanType;
 	}
 
-	public long getLoanAmount() {
+	public int getLoanAmount() {
 		return loanAmount;
 	}
 
-	public void setLoanAmount(long loanAmount) {
+	public void setLoanAmount(int loanAmount) {
 		this.loanAmount = loanAmount;
 	}
 
@@ -73,11 +73,11 @@ public class LoanApplication {
 		this.remarks = remarks;
 	}
 
-	public long getBalance() {
+	public int getBalance() {
 		return balance;
 	}
 
-	public void setBalance(long balance) {
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 

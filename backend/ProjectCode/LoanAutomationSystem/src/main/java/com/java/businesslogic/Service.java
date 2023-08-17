@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.java.dataaccessimplementation.DataAccess;
 import com.java.entities.Customer;
+import com.java.entities.CustomerLogin;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
@@ -15,15 +16,15 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("/myservices")
+//@Path("/myservices")
 public class Service {
 	
 	DataAccess dataAccess = new DataAccess();
 	
-	@POST
-	@Path("/addcustomer")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+//	@POST
+//	@Path("/addcustomer")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
 	public boolean addDetails(Customer customer) {
 		try {
 			return dataAccess.addDetails(customer);
@@ -33,10 +34,10 @@ public class Service {
 		return false;
 	}
 	
-	@POST
-	@Path("/addloanapplication")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+//	@POST
+//	@Path("/addloanapplication")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Consumes(MediaType.APPLICATION_JSON)
 	public boolean applyForLoan(LoanApplication loanApplication) {
 		try {
 			return dataAccess.applyForLoan(loanApplication);
@@ -51,10 +52,10 @@ public class Service {
 	}
 	
 	
-	@GET
-	@Path("/onecustomer/{customerId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Customer viewCustomerDetailsById(@PathParam("customerId") long customerId) {
+//	@GET
+//	@Path("/onecustomer/{customerId}")
+//	@Produces(MediaType.APPLICATION_JSON)
+	public Customer viewCustomerDetailsById(int customerId) {
 		try {
 			return dataAccess.viewCustomerDetailsById(customerId);
 		} catch (Exception e) {
@@ -62,9 +63,9 @@ public class Service {
 		}
 		return null;
 	}
-	@GET
-	@Path("/allrecords")
-	@Produces(MediaType.APPLICATION_JSON)
+//	@GET
+//	@Path("/allrecords")
+//	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Customer> getAllCustomers(){
 		try {
 			return dataAccess.getAllCustomers();
@@ -74,10 +75,10 @@ public class Service {
 		return null;
 	}
 	
-	@GET
-	@Path("/oneapplication/{applicationNo}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public LoanApplication getLoanApplicationById(@PathParam("applicationNo") long applicationNo) {
+//	@GET
+//	@Path("/oneapplication/{applicationNo}")
+//	@Produces(MediaType.APPLICATION_JSON)
+	public LoanApplication getLoanApplicationById(int applicationNo) {
 		try {
 			return dataAccess.getLoanApplicationById(applicationNo);
 		} catch (Exception e) {
@@ -85,9 +86,9 @@ public class Service {
 		}
 		return null;
 	}
-	@GET
-	@Path("/records")
-	@Produces(MediaType.APPLICATION_JSON)
+//	@GET
+//	@Path("/records")
+//	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Loan> browseLoans(){
 		try {
 			return dataAccess.browseLoans();
@@ -97,9 +98,9 @@ public class Service {
 		return null;
 	}
 	
-	@GET
-	@Path("/applications")
-	@Produces(MediaType.APPLICATION_JSON)
+//	@GET
+//	@Path("/applications")
+//	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<LoanApplication> getAllApplications(){
 		try {
 			return dataAccess.getAllApplications();
@@ -118,10 +119,10 @@ public class Service {
 		return false;
 	}
 	
-	@GET
-	@Path("/onecapplication/{customerNo}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<LoanApplication> getApplicationsByCId(@PathParam("customerNo") long customerNo){
+//	@GET
+//	@Path("/onecapplication/{customerNo}")
+//	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<LoanApplication> getApplicationsByCId(int customerNo){
 		try {
 			return dataAccess.getApplicationsByCId(customerNo);
 		} catch (Exception e) {
@@ -129,5 +130,63 @@ public class Service {
 		}
 		return null;
 	}
+	
+//	@GET
+//	@Path("/loanapplications/{loantype}")
+//	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<LoanApplication> getLoanApplications(String loantype){
+		try {
+			return dataAccess.getLoanApplications(loantype);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<LoanApplication> getApplicationsByStatus(String status){
+		try {
+			return dataAccess.getApplicationsByStatus(status);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public boolean deleteApplication(int applicationNo){
+		try {
+			return dataAccess.deleteApplication(applicationNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean register(CustomerLogin login){
+		try {
+			return dataAccess.register(login);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public int login(CustomerLogin login){
+		try {
+			return dataAccess.login(login);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public boolean updateCustomer(Customer customer){
+		try {
+			return dataAccess.updateCustomer(customer);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
 
 }

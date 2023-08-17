@@ -28,6 +28,7 @@
   		</param-name>
   		<param-value>
   			com.java.businesslogic
+  			com.java.services;
   		</param-value>
   	</init-param>
   </servlet>

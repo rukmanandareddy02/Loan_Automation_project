@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="jakarta.ws.rs.ext.Provider"/>
+    <fullyQualifiedTypeName name="jakarta.ws.rs.Path"/>
+    <fullyQualifiedTypeName name="com.java.businesslogic.Service"/>
+    <fullyQualifiedTypeName name="jakarta.ws.rs.PathParam"/>
+    <fullyQualifiedTypeName name="com.java.services.ServiceResponse"/>
+    <fullyQualifiedTypeName name="com.java.entities.CustomerLogin"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

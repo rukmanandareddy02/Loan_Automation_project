@@ -1,0 +1,54 @@
+package com.java.entities;
+
+public class Customer {
+	int customerId;
+	String name;
+	String gender;
+	int mobileNumber;
+
+	public Customer() {
+		super();
+	}
+
+	public Customer(int customerId, String name, String gender, int mobileNumber) {
+		super();
+		this.customerId = customerId;
+		this.name = name;
+		this.gender = gender;
+		this.mobileNumber = mobileNumber;
+	}
+
+	public long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public long getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(int mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+
+}
