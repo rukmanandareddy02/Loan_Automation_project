@@ -25,7 +25,10 @@ public class ClerkService {
 	public ServiceResponse<Boolean> addDetails(Customer customer) {
 		try {
 			boolean flag = service.addDetails(customer);
-			return new ServiceResponse<Boolean>("data added",200,flag);
+			if(flag==true)
+				return new ServiceResponse<Boolean>("data added",200,flag);
+			else
+				return new ServiceResponse<Boolean>("data not added",404,flag);
 		} catch (Exception e) {
 			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
@@ -38,7 +41,10 @@ public class ClerkService {
 	public ServiceResponse<Boolean> applyForLoan(LoanApplication loanApplication) {
 		try {
 			boolean flag = service.applyForLoan(loanApplication);
-			return new ServiceResponse<Boolean>("data added",200,flag);
+			if(flag==true)
+				return new ServiceResponse<Boolean>("data added",200,flag);
+			else
+				return new ServiceResponse<Boolean>("data not added",404,flag);
 		} catch (Exception e) {
 			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
@@ -50,7 +56,10 @@ public class ClerkService {
 	public ServiceResponse<ArrayList<LoanApplication>> getAllApplications(){
 		try {
 			ArrayList<LoanApplication> applications = service.getAllApplications();
-			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
 		} catch (Exception e) {
 			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
@@ -62,7 +71,10 @@ public class ClerkService {
 	public ServiceResponse<ArrayList<Customer>> getAllCustomers(){
 		try {
 			ArrayList<Customer> customers = service.getAllCustomers();
-			return new ServiceResponse<ArrayList<Customer>>("data found",200,customers);
+			if(customers.size()!=0)
+				return new ServiceResponse<ArrayList<Customer>>("data found",200,customers);
+			else
+				return new ServiceResponse<ArrayList<Customer>>("data not found",404,customers);
 		} catch (Exception e) {
 			return new ServiceResponse<ArrayList<Customer>>(e.getMessage(),500,null);
 		}
@@ -74,7 +86,10 @@ public class ClerkService {
 	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByCId(@PathParam("loantype") String loantype){
 		try {
 			ArrayList<LoanApplication> applications = service.getLoanApplications(loantype);
-			return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
 		} catch (Exception e) {
 			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}

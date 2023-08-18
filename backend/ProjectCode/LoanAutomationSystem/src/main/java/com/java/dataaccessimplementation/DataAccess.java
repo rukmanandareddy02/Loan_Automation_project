@@ -1,5 +1,6 @@
 package com.java.dataaccessimplementation;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,7 @@ import com.java.dataaccess.DataAccessInterface;
 import com.java.databasehandler.JDBCApp;
 import com.java.entities.Customer;
 import com.java.entities.CustomerLogin;
+import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
@@ -47,14 +49,13 @@ public class DataAccess implements DataAccessInterface {
 	public boolean applyForLoan(LoanApplication loanApplication) throws Exception {
 		try {
 			ps = connection.prepareStatement(
-					"INSERT INTO LOAN_APPLICATION(APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE) values(?,?,?,?,?,?,?)");
-			ps.setInt(1, loanApplication.getApplicationNo());
-			ps.setInt(2, loanApplication.getCustomerId());
-			ps.setString(3, loanApplication.getLoanType());
-			ps.setInt(4, loanApplication.getLoanAmount());
-			ps.setString(5, loanApplication.getStatus());
-			ps.setString(6, loanApplication.getRemarks());
-			ps.setInt(7, loanApplication.getBalance());
+					"INSERT INTO LOAN_APPLICATION(CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE) values(?,?,?,?,?,?)");
+			ps.setInt(1, loanApplication.getCustomerId());
+			ps.setString(2, loanApplication.getLoanType());
+			ps.setInt(3, loanApplication.getLoanAmount());
+			ps.setString(4, loanApplication.getStatus());
+			ps.setString(5, loanApplication.getRemarks());
+			ps.setInt(6, loanApplication.getBalance());
 			int res = ps.executeUpdate();
 			if (res <= 0) {
 				// System.out.println("did not inserted");
@@ -113,7 +114,7 @@ public class DataAccess implements DataAccessInterface {
 		LoanApplication loanApplication = null;
 		try {
 			ps = connection.prepareStatement(
-					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION where APPLICATION_NO=?");
+					"select APPLICATION_ID,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION where APPLICATION_ID=?");
 			ps.setInt(1, applicationNo);
 			ResultSet res = ps.executeQuery();
 			while (res.next()) {
@@ -148,7 +149,7 @@ public class DataAccess implements DataAccessInterface {
 		ArrayList<LoanApplication> applications = new ArrayList<>();
 		try {
 			ps = connection.prepareStatement(
-					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION");
+					"select APPLICATION_ID,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION");
 			ResultSet res = ps.executeQuery();
 			while (res.next()) {
 				applications.add(new LoanApplication(res.getInt(1), res.getInt(2), res.getString(3), res.getInt(4),
@@ -166,7 +167,7 @@ public class DataAccess implements DataAccessInterface {
 		ArrayList<LoanApplication> applications = new ArrayList<>();
 		try {
 			ps = connection.prepareStatement(
-					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE LOAN_TYPE=?");
+					"select APPLICATION_ID,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE LOAN_TYPE=?");
 			ps.setString(1, loanType);
 			ResultSet res = ps.executeQuery();
 			while (res.next()) {
@@ -185,7 +186,7 @@ public class DataAccess implements DataAccessInterface {
 		ArrayList<LoanApplication> applications = new ArrayList<>();
 		try {
 			ps = connection.prepareStatement(
-					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE STATUS=?");
+					"select APPLICATION_ID,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE STATUS=?");
 			ps.setString(1, status);
 			ResultSet res = ps.executeQuery();
 			while (res.next()) {
@@ -209,7 +210,7 @@ public class DataAccess implements DataAccessInterface {
 		ArrayList<LoanApplication> applications = new ArrayList<>();
 		try {
 			ps = connection.prepareStatement(
-					"select APPLICATION_NO,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE CUSTOMER_ID =?");
+					"select APPLICATION_ID,CUSTOMER_ID,LOAN_TYPE,LOAN_AMOUNT,STATUS,REMARKS,BALANCE FROM LOAN_APPLICATION WHERE CUSTOMER_ID =?");
 			ps.setInt(1, customerId);
 			ResultSet res = ps.executeQuery();
 			while (res.next()) {
@@ -224,10 +225,10 @@ public class DataAccess implements DataAccessInterface {
 
 	public boolean deleteApplication(int applicationNo) throws Exception {
 		try {
-			ps = connection.prepareStatement("DELETE FROM LOAN_APPLICATION WHERE APPLICATION_NO =?");
+			ps = connection.prepareStatement("DELETE FROM LOAN_APPLICATION WHERE APPLICATION_ID =?");
 			ps.setInt(1, applicationNo);
 			int res = ps.executeUpdate();
-			if(res>0)
+			if (res < 0)
 				return false;
 		} catch (SQLException e) {
 			throw e;
@@ -253,8 +254,7 @@ public class DataAccess implements DataAccessInterface {
 	public int login(CustomerLogin login) throws Exception {
 		int p = -1;
 		try {
-			ps = connection.prepareStatement(
-					"SELECT CUSTOMER_ID FROM CUSTOMERS WHERE EMAIL=(SELECT EMAIL FROM CUSTOMER_LOGIN WHERE EMAIL=? AND PASSWORD=?)");
+			ps = connection.prepareStatement("SELECT CUSTOMER_ID FROM CUSTOMER_LOGIN WHERE EMAIL=? AND PASSWORD=?");
 			ps.setString(1, login.getUserName());
 			ps.setString(2, login.getPassword());
 			ResultSet res = ps.executeQuery();
@@ -285,4 +285,40 @@ public class DataAccess implements DataAccessInterface {
 
 		return true;
 	}
+
+	public boolean setStatus(LoanApplication loanApplication) throws Exception {
+		try {
+			ps = connection.prepareStatement("update loan_application set status=? where application_id=?");
+			ps.setString(1, loanApplication.getStatus());
+			ps.setInt(2, loanApplication.getApplicationNo());
+			int res = ps.executeUpdate();
+			if (res <= 0) {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
+		return true;
+	}
+
+//	public boolean uploadImage(Documents document) throws Exception {
+//		try {
+//			ps = connection.prepareStatement("insert into loan_documents values(?,?,?)");
+//
+//			Blob blob = connection.createBlob();
+//			blob.setBytes(1, .getProductImage().getBytes());
+//			// System.out.println(blob.getBinaryStream());
+//
+//			statement.setInt(1, sample.getProductId());
+//			statement.setString(2, sample.getProductName());
+//			statement.setBlob(3, blob);
+//			Integer res = statement.executeUpdate();
+//
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			throw e;
+//		}
+//		return true;
+//	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.java.entities.Customer;
 import com.java.entities.CustomerLogin;
+import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
@@ -23,5 +24,7 @@ public interface DataAccessInterface {
 	boolean register(CustomerLogin login) throws Exception;
 	int login(CustomerLogin login) throws Exception;
 	boolean updateCustomer(Customer customer) throws Exception;
+	boolean setStatus(LoanApplication loanApplication) throws Exception;
+	//boolean uploadImage(Documents document) throws Exception;
 
 }
