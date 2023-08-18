@@ -131,7 +131,7 @@ public class CustomerService {
 		}
 	}
 	
-	@POST
+	@GET
 	@Path("/login")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
