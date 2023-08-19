@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.java.dataaccessimplementation.DataAccess;
 import com.java.entities.Customer;
 import com.java.entities.CustomerLogin;
+import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
@@ -195,6 +196,41 @@ public class Service {
 		}
 		return false;
 	}
+	
+	public boolean uploadImage(Documents documents) {
+		try {
+			return dataAccess.uploadImage(documents);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public ArrayList<Documents> fetchImages(int applicationNo) {
+		try {
+			return dataAccess.fetchImages(applicationNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
+	public boolean clogin(CustomerLogin clerk){
+		try {
+			return dataAccess.clogin(clerk);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean mlogin(CustomerLogin manager){
+		try {
+			return dataAccess.mlogin(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

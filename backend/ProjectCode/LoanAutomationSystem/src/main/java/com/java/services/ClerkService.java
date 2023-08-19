@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.java.businesslogic.Service;
 import com.java.entities.Customer;
+import com.java.entities.CustomerLogin;
+import com.java.entities.Documents;
 import com.java.entities.LoanApplication;
 
 import jakarta.ws.rs.Consumes;
@@ -92,6 +94,38 @@ public class ClerkService {
 				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
 		} catch (Exception e) {
 			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+	@GET
+	@Path("/cdocuments/{applicationNo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<Documents>> fetchImages(@PathParam("applicationNo") int applicationNo){
+		try {
+			ArrayList<Documents> docs = service.fetchImages(applicationNo);
+			if(docs.size()!=0)
+				return new ServiceResponse<ArrayList<Documents>>("data found",200,docs);
+			else
+				return new ServiceResponse<ArrayList<Documents>>("data not found",404,docs);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<Documents>>(e.getMessage(),500,null);
+		}
+	}
+	
+	@POST
+	@Path("/clogin")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ServiceResponse<Boolean> clogin(CustomerLogin clerk){
+		try {
+			boolean flag=service.clogin(clerk);
+			if(flag==true)
+				return new ServiceResponse<Boolean>("data found",200,flag);
+			else
+				return new ServiceResponse<Boolean>("data not found",404,flag);
+				
+		} catch (Exception e) {
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
 	}
 

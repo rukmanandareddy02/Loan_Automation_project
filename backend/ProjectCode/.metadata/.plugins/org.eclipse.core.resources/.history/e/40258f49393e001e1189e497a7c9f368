@@ -1,0 +1,27 @@
+package com.java.entities;
+
+public class Documents {
+	String applicationNo;
+	String documents;
+	public Documents() {
+		super();
+	}
+	public Documents(String applicationNo, String documents) {
+		super();
+		this.applicationNo = applicationNo;
+		this.documents = documents;
+	}
+	public String getApplicationNo() {
+		return applicationNo;
+	}
+	public void setApplicationNo(String applicationNo) {
+		this.applicationNo = applicationNo;
+	}
+	public String getDocuments() {
+		return documents;
+	}
+	public void setDocuments(String documents) {
+		this.documents = documents;
+	}
+
+}

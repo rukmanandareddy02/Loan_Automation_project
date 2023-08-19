@@ -1,0 +1,9 @@
+package com.java.entities;
+
+public class Documents {
+	int applicationNo;
+	String document1;
+	String document2;
+	
+
+}

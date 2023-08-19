@@ -1,5 +1,7 @@
 package com.java.dataaccessimplementation;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -228,7 +230,7 @@ public class DataAccess implements DataAccessInterface {
 			ps = connection.prepareStatement("DELETE FROM LOAN_APPLICATION WHERE APPLICATION_ID =?");
 			ps.setInt(1, applicationNo);
 			int res = ps.executeUpdate();
-			if (res < 0)
+			if (res <= 0)
 				return false;
 		} catch (SQLException e) {
 			throw e;
@@ -242,7 +244,7 @@ public class DataAccess implements DataAccessInterface {
 			ps.setString(1, login.getUserName());
 			ps.setString(2, login.getPassword());
 			int res = ps.executeUpdate();
-			if (res < 0) {
+			if (res <= 0) {
 				return false;
 			}
 		} catch (SQLException e) {
@@ -302,23 +304,87 @@ public class DataAccess implements DataAccessInterface {
 		return true;
 	}
 
-//	public boolean uploadImage(Documents document) throws Exception {
-//		try {
-//			ps = connection.prepareStatement("insert into loan_documents values(?,?,?)");
-//
-//			Blob blob = connection.createBlob();
-//			blob.setBytes(1, .getProductImage().getBytes());
-//			// System.out.println(blob.getBinaryStream());
-//
-//			statement.setInt(1, sample.getProductId());
-//			statement.setString(2, sample.getProductName());
-//			statement.setBlob(3, blob);
-//			Integer res = statement.executeUpdate();
-//
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			throw e;
-//		}
-//		return true;
-//	}
+	public boolean uploadImage(Documents document) throws Exception {
+		try {
+			ps = connection.prepareStatement("insert into loan_documents values(?,?,?)");
+			Blob blob1 = connection.createBlob();
+			Blob blob2 = connection.createBlob();
+			blob1.setBytes(1, document.getDocument1().getBytes());
+			blob2.setBytes(2, document.getDocument2().getBytes());
+			ps.setInt(1, document.getApplicationNo());
+			ps.setBlob(2, blob1);
+			ps.setBlob(3, blob2);
+			int res = ps.executeUpdate();
+			if(res<=0)
+				return false;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
+		return true;
+	}
+	
+	public ArrayList<Documents> fetchImages(int applicationNo) throws Exception{
+		ArrayList<Documents> docs = new ArrayList<>();
+		try {
+			ps = connection.prepareStatement("select * from loan_documents where application_id=?");
+			ps.setInt(1, applicationNo);
+			ResultSet res = ps.executeQuery();
+			while(res.next()) {
+				Documents doc = new Documents();
+				doc.setApplicationNo(res.getInt("application_id"));				;
+				StringBuffer buf = new StringBuffer();
+				String temp = null;
+				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document1").getBinaryStream()));
+				while((temp = reader.readLine())!=null) {
+					buf.append(temp);
+				}
+				doc.setDocument1(buf.toString());
+				docs.add(doc);
+				StringBuffer buf2 = new StringBuffer();
+				String temp2 = null;
+				BufferedReader reader2 = new BufferedReader(new InputStreamReader(res.getBlob("document2").getBinaryStream()));
+				while((temp2 = reader2.readLine())!=null) {
+					buf2.append(temp2);
+				}
+				doc.setDocument2(buf.toString());
+				docs.add(doc);
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			throw e;
+		}
+		return docs;
+	}
+	
+	public boolean clogin(CustomerLogin clerk) throws Exception{
+		try {
+			ps = connection.prepareStatement("SELECT * FROM CLERK_LOGIN WHERE EMAIL=? AND PASSWORD=?");
+			ps.setString(1, clerk.getUserName());
+			ps.setString(2, clerk.getPassword());
+			ResultSet res = ps.executeQuery();
+			if(!res.next())
+				return false;
+				
+		} catch (SQLException e) {
+			throw e;
+		}
+		return true;
+	}
+	
+	public boolean mlogin(CustomerLogin manager) throws Exception{
+		try {
+			ps = connection.prepareStatement("SELECT * FROM MANAGER_LOGIN WHERE EMAIL=? AND PASSWORD=?");
+			ps.setString(1, manager.getUserName());
+			ps.setString(2, manager.getPassword());
+			ResultSet res = ps.executeQuery();
+			if(!res.next())
+				return false;
+				
+		} catch (SQLException e) {
+			throw e;
+		}
+		return true;
+	}
+	
 }

@@ -1,27 +1,36 @@
 package com.java.entities;
 
 public class Documents {
-	String applicationNO;
-	String documents;
+	int applicationNo;
+	String document1;
+	String document2;
 	public Documents() {
 		super();
 	}
-	public Documents(String applicationNO, String documents) {
+	public Documents(int applicationNo, String document1, String document2) {
 		super();
-		this.applicationNO = applicationNO;
-		this.documents = documents;
+		this.applicationNo = applicationNo;
+		this.document1 = document1;
+		this.document2 = document2;
 	}
-	public String getApplicationNO() {
-		return applicationNO;
+	public int getApplicationNo() {
+		return applicationNo;
 	}
-	public void setApplicationNO(String applicationNO) {
-		this.applicationNO = applicationNO;
+	public void setApplicationNo(int applicationNo) {
+		this.applicationNo = applicationNo;
 	}
-	public String getDocuments() {
-		return documents;
+	public String getDocument1() {
+		return document1;
 	}
-	public void setDocuments(String documents) {
-		this.documents = documents;
+	public void setDocument1(String document1) {
+		this.document1 = document1;
 	}
+	public String getDocument2() {
+		return document2;
+	}
+	public void setDocument2(String document2) {
+		this.document2 = document2;
+	}
+	
 
 }

@@ -25,6 +25,9 @@ public interface DataAccessInterface {
 	int login(CustomerLogin login) throws Exception;
 	boolean updateCustomer(Customer customer) throws Exception;
 	boolean setStatus(LoanApplication loanApplication) throws Exception;
-	//boolean uploadImage(Documents document) throws Exception;
+	boolean uploadImage(Documents document) throws Exception;
+	ArrayList<Documents> fetchImages(int applicationNo) throws Exception;
+	boolean clogin(CustomerLogin clerk) throws Exception;
+	boolean mlogin(CustomerLogin manager) throws Exception;
 
 }

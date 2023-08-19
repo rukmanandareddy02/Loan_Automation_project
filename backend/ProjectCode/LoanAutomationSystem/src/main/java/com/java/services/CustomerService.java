@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.java.businesslogic.Service;
 import com.java.entities.Customer;
 import com.java.entities.CustomerLogin;
+import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
 
@@ -159,6 +160,23 @@ public class CustomerService {
 				return new ServiceResponse<Boolean>("data updated",200,flag);
 			else
 				return new ServiceResponse<Boolean>("data not found",404,flag);
+		} catch (Exception e) {
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
+		}
+	}
+	
+	@POST
+	@Path("/upload")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ServiceResponse<Boolean> uploadImage(Documents documents){
+		try {
+			boolean flag = service.uploadImage(documents);
+			if(flag==true)
+				return new ServiceResponse<Boolean>("data inserted",200,flag);
+			else
+				return new ServiceResponse<Boolean>("data not inserted",404,flag);
+				
 		} catch (Exception e) {
 			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}
