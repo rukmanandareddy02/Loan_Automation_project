@@ -9,7 +9,9 @@
     <fullyQualifiedTypeName name="jakarta.ws.rs.DELETE"/>
     <fullyQualifiedTypeName name="jakarta.ws.rs.PUT"/>
     <fullyQualifiedTypeName name="jakarta.ws.rs.Consumes"/>
-    <fullyQualifiedTypeName name="jakarta.ws.rs.PathParam"/>
-    <fullyQualifiedTypeName name="com.java.entities.Documents"/>
     <fullyQualifiedTypeName name="java.sql.Blob"/>
+    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
+    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+    <fullyQualifiedTypeName name="com.java.entities.Documents"/>
+    <fullyQualifiedTypeName name="jakarta.ws.rs.PathParam"/>
 </qualifiedTypeNameHistroy>

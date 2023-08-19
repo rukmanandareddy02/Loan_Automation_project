@@ -86,21 +86,6 @@ public class CustomerService {
 	}
 	
 	@GET
-	@Path("/getloanapplication/{applicationNo}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<LoanApplication> getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
-		try {
-			LoanApplication application = service.getLoanApplicationById(applicationNo);
-			if(application!=null)
-				return new ServiceResponse<LoanApplication>("data found",200,application);
-			else
-				return new ServiceResponse<LoanApplication>("data not found",404,application);
-		} catch (Exception e) {
-			return new ServiceResponse<LoanApplication>(e.getMessage(),500,null);
-		}
-	}
-	
-	@GET
 	@Path("/loans")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ServiceResponse<ArrayList<Loan>> browseLoans(){

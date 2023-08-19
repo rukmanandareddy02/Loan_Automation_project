@@ -1,0 +1,3 @@
+127.0.0.1 - - [19/Aug/2023:12:21:18 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [19/Aug/2023:12:22:21 +0530] "GET /LoanAutomationSystem/rest/customer/getloanapplication/1 HTTP/1.1" 200 189
+0:0:0:0:0:0:0:1 - - [19/Aug/2023:12:22:44 +0530] "GET /LoanAutomationSystem/rest/customer/getloanapplication/2 HTTP/1.1" 200 189
