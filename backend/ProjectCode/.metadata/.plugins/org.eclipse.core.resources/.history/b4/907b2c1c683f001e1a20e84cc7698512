@@ -328,27 +328,36 @@ public class DataAccess implements DataAccessInterface {
 		return true;
 	}
 	
-	public ArrayList<String> fetchImages(int applicationNo) throws Exception{
-		ArrayList<String> docs = new ArrayList<>();
-		try {
-			ps = connection.prepareStatement("select documents from loan_documents where application_id=?");
-			ps.setInt(1, applicationNo);
-			ResultSet res = ps.executeQuery();
-			while(res.next()) {
-				StringBuffer buf = new StringBuffer();
-				String temp = null;
-				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document1").getBinaryStream()));
-				while((temp = reader.readLine())!=null) {
-					buf.append(temp);
-				}
-				docs.add(buf.toString());
-			}
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw e;
-		}
-		return docs;
-	}
+//	public ArrayList<String> fetchImages(int applicationNo) throws Exception{
+//		ArrayList<String> docs = new ArrayList<>();
+//		try {
+//			ps = connection.prepareStatement("select documents from loan_documents where application_id=?");
+//			ps.setInt(1, applicationNo);
+//			ResultSet res = ps.executeQuery();
+//			while(res.next()) {
+//				StringBuffer buf = new StringBuffer();
+//				String temp = null;
+//				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document1").getBinaryStream()));
+//				while((temp = reader.readLine())!=null) {
+//					buf.append(temp);
+//				}
+//				doc.setDocument1(buf.toString());
+//				docs.add(doc);
+//				StringBuffer buf2 = new StringBuffer();
+//				String temp2 = null;
+//				BufferedReader reader2 = new BufferedReader(new InputStreamReader(res.getBlob("document2").getBinaryStream()));
+//				while((temp2 = reader2.readLine())!=null) {
+//					buf2.append(temp2);
+//				}
+//				doc.setDocument2(buf.toString());
+//				docs.add(doc);
+//			}
+//		}catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			throw e;
+//		}
+//		return docs;
+//	}
 	
 	public boolean clogin(CustomerLogin clerk) throws Exception{
 		try {

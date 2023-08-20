@@ -129,7 +129,7 @@ public class ManagerService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ServiceResponse<ArrayList<String>> fetchImages(@PathParam("applicationNo") int applicationNo){
 		try {
-			ArrayList<String> docs = service.fetchImages(applicationNo);
+			ArrayList<Documents> docs = service.fetchImages(applicationNo);
 			if(docs.size()!=0)
 				return new ServiceResponse<ArrayList<String>>("data found",200,docs);
 			else

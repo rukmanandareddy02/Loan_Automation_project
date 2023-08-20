@@ -124,20 +124,20 @@ public class ManagerService {
 		}
 	}
 	
-	@GET
-	@Path("/mdocuments/{applicationNo}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<ArrayList<String>> fetchImages(@PathParam("applicationNo") int applicationNo){
-		try {
-			ArrayList<String> docs = service.fetchImages(applicationNo);
-			if(docs.size()!=0)
-				return new ServiceResponse<ArrayList<String>>("data found",200,docs);
-			else
-				return new ServiceResponse<ArrayList<String>>("data not found",404,docs);
-		} catch (Exception e) {
-			return new ServiceResponse<ArrayList<String>>(e.getMessage(),500,null);
-		}
-	}
+//	@GET
+//	@Path("/mdocuments/{applicationNo}")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public ServiceResponse<ArrayList<Documents>> fetchImages(@PathParam("applicationNo") int applicationNo){
+//		try {
+//			ArrayList<Documents> docs = service.fetchImages(applicationNo);
+//			if(docs.size()!=0)
+//				return new ServiceResponse<ArrayList<Documents>>("data found",200,docs);
+//			else
+//				return new ServiceResponse<ArrayList<Documents>>("data not found",404,docs);
+//		} catch (Exception e) {
+//			return new ServiceResponse<ArrayList<Documents>>(e.getMessage(),500,null);
+//		}
+//	}
 	
 	@POST
 	@Path("/mlogin")

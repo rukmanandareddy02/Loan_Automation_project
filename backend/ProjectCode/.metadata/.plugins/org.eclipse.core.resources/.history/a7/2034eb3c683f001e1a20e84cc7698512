@@ -217,14 +217,14 @@ public class Service {
 		return false;
 	}
 	
-	public ArrayList<String> fetchImages(int applicationNo) {
-		try {
-			return dataAccess.fetchImages(applicationNo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public ArrayList<Documents> fetchImages(int applicationNo) {
+//		try {
+//			return dataAccess.fetchImages(applicationNo);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	public boolean clogin(CustomerLogin clerk){
 		try {
