@@ -47,6 +47,36 @@ public class ManagerService {
 		}
 	}
 	
+	@GET
+	@Path("/loanapplications/{loantype}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByCId(@PathParam("loantype") String loantype){
+		try {
+			ArrayList<LoanApplication> applications = service.getLoanApplications(loantype);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+	
+	@GET
+	@Path("/getloanapplication/{applicationNo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
+		try {
+			ArrayList<LoanApplication> applications = service.getLoanApplicationById(applicationNo);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
 	
 	@GET
 	@Path("/loanapplicationsstatus/{status}")
@@ -54,6 +84,21 @@ public class ManagerService {
 	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByStatus(@PathParam("status") String status){
 		try {
 			ArrayList<LoanApplication> applications= service.getApplicationsByStatus(status);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+	@GET
+	@Path("/loanapplicationsbydate/{date}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByDate(@PathParam("date") String date){
+		try {
+			ArrayList<LoanApplication> applications= service.getApplicationsByDate(date);
 			if(applications.size()!=0)
 				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 			else
@@ -79,20 +124,20 @@ public class ManagerService {
 		}
 	}
 	
-	@GET
-	@Path("/mdocuments/{applicationNo}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<ArrayList<Documents>> fetchImages(@PathParam("applicationNo") int applicationNo){
-		try {
-			ArrayList<Documents> docs = service.fetchImages(applicationNo);
-			if(docs.size()!=0)
-				return new ServiceResponse<ArrayList<Documents>>("data found",200,docs);
-			else
-				return new ServiceResponse<ArrayList<Documents>>("data not found",404,docs);
-		} catch (Exception e) {
-			return new ServiceResponse<ArrayList<Documents>>(e.getMessage(),500,null);
-		}
-	}
+//	@GET
+//	@Path("/mdocuments/{applicationNo}")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public ServiceResponse<ArrayList<Documents>> fetchImages(@PathParam("applicationNo") int applicationNo){
+//		try {
+//			ArrayList<Documents> docs = service.fetchImages(applicationNo);
+//			if(docs.size()!=0)
+//				return new ServiceResponse<ArrayList<Documents>>("data found",200,docs);
+//			else
+//				return new ServiceResponse<ArrayList<Documents>>("data not found",404,docs);
+//		} catch (Exception e) {
+//			return new ServiceResponse<ArrayList<Documents>>(e.getMessage(),500,null);
+//		}
+//	}
 	
 	@POST
 	@Path("/mlogin")

@@ -7,13 +7,14 @@ import com.java.entities.CustomerLogin;
 import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
+import com.java.entities.ResetPassword;
 
 public interface DataAccessInterface {
 	boolean addDetails(Customer customer) throws Exception;
 	boolean applyForLoan(LoanApplication loanApplication) throws Exception;
-	Customer viewCustomerDetailsById(int customerId) throws Exception;
+	ArrayList<Customer> viewCustomerDetailsById(int customerId) throws Exception;
 	ArrayList<Customer> getAllCustomers() throws Exception;
-	LoanApplication getLoanApplicationById(int applicationNo) throws Exception;
+	ArrayList<LoanApplication> getLoanApplicationById(int applicationNo) throws Exception;
 	ArrayList<Loan> browseLoans() throws Exception;
 	ArrayList<LoanApplication> getAllApplications() throws Exception;
 	boolean sendMail() throws Exception;
@@ -25,9 +26,14 @@ public interface DataAccessInterface {
 	int login(CustomerLogin login) throws Exception;
 	boolean updateCustomer(Customer customer) throws Exception;
 	boolean setStatus(LoanApplication loanApplication) throws Exception;
-	boolean uploadImage(Documents document) throws Exception;
-	ArrayList<Documents> fetchImages(int applicationNo) throws Exception;
+	boolean uploadDocuments(Documents document) throws Exception;
+	//ArrayList<String> fetchImages(int applicationNo) throws Exception;
 	boolean clogin(CustomerLogin clerk) throws Exception;
 	boolean mlogin(CustomerLogin manager) throws Exception;
+	int getCustomerId(String userName) throws Exception;
+	//boolean resetPassword(CustomerLogin reset) throws Exception;
+	ArrayList<LoanApplication> getApplicationsByDate(String date) throws Exception;
+	boolean resetPassword(ResetPassword reset) throws Exception;
+	
 
 }

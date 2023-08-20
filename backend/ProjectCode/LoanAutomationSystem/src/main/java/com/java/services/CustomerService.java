@@ -8,6 +8,7 @@ import com.java.entities.CustomerLogin;
 import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
+import com.java.entities.ResetPassword;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -58,15 +59,15 @@ public class CustomerService {
 	@GET
 	@Path("/viewcustomer/{customerId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<Customer> viewCustomerDetailsById(@PathParam("customerId") int customerId) {
+	public ServiceResponse<ArrayList<Customer>> viewCustomerDetailsById(@PathParam("customerId") int customerId) {
 		try {
-			Customer customer = service.viewCustomerDetailsById(customerId);
-			if(customer!=null)
-				return new ServiceResponse<Customer>("data found",200,customer);
+			ArrayList<Customer> customers= service.viewCustomerDetailsById(customerId);
+			if(customers.size()!=0)
+				return new ServiceResponse<ArrayList<Customer>>("data found",200,customers);
 			else 
-				return new ServiceResponse<Customer>("data not found",404,customer);
+				return new ServiceResponse<ArrayList<Customer>>("data not found",404,customers);
 		} catch (Exception e) {
-			return new ServiceResponse<Customer>(e.getMessage(),500,null);
+			return new ServiceResponse<ArrayList<Customer>>(e.getMessage(),500,null);
 		}
 	}
 	
@@ -88,15 +89,15 @@ public class CustomerService {
 	@GET
 	@Path("/getloanapplication/{applicationNo}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<LoanApplication> getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
+	public ServiceResponse<ArrayList<LoanApplication>> getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
 		try {
-			LoanApplication application = service.getLoanApplicationById(applicationNo);
-			if(application!=null)
-				return new ServiceResponse<LoanApplication>("data found",200,application);
+			ArrayList<LoanApplication> applications = service.getLoanApplicationById(applicationNo);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 			else
-				return new ServiceResponse<LoanApplication>("data not found",404,application);
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
 		} catch (Exception e) {
-			return new ServiceResponse<LoanApplication>(e.getMessage(),500,null);
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
 	}
 	
@@ -184,7 +185,7 @@ public class CustomerService {
 	@Path("/upload")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ServiceResponse<Boolean> uploadImage(Documents documents){
+	public ServiceResponse<Boolean> uploadDocuments(Documents documents){
 		try {
 			boolean flag = service.uploadImage(documents);
 			if(flag==true)
@@ -192,6 +193,22 @@ public class CustomerService {
 			else
 				return new ServiceResponse<Boolean>("data not inserted",404,flag);
 				
+		} catch (Exception e) {
+			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
+		}
+	}
+	
+	@PUT
+	@Path("/reset")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public ServiceResponse<Boolean> resetPassword(ResetPassword reset){
+		try {
+			boolean flag = service.resetPassword(reset);
+			if(flag==true)
+				return new ServiceResponse<Boolean>("data updated",200,flag);
+			else
+				return new ServiceResponse<Boolean>("data not found",404,flag);
 		} catch (Exception e) {
 			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
 		}

@@ -8,6 +8,8 @@ import com.java.entities.CustomerLogin;
 import com.java.entities.Documents;
 import com.java.entities.Loan;
 import com.java.entities.LoanApplication;
+import com.java.entities.ResetPassword;
+import com.java.services.ServiceResponse;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
@@ -56,7 +58,7 @@ public class Service {
 //	@GET
 //	@Path("/onecustomer/{customerId}")
 //	@Produces(MediaType.APPLICATION_JSON)
-	public Customer viewCustomerDetailsById(int customerId) throws Exception {
+	public ArrayList<Customer> viewCustomerDetailsById(int customerId) throws Exception {
 		try {
 			return dataAccess.viewCustomerDetailsById(customerId);
 		} catch (Exception e) {
@@ -78,9 +80,18 @@ public class Service {
 //	@GET
 //	@Path("/oneapplication/{applicationNo}")
 //	@Produces(MediaType.APPLICATION_JSON)
-	public LoanApplication getLoanApplicationById(int applicationNo) {
+	public ArrayList<LoanApplication> getLoanApplicationById(int applicationNo) {
 		try {
 			return dataAccess.getLoanApplicationById(applicationNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<LoanApplication> getApplicationsByDate(String date) {
+		try {
+			return dataAccess.getApplicationsByDate(date);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -199,21 +210,21 @@ public class Service {
 	
 	public boolean uploadImage(Documents documents) {
 		try {
-			return dataAccess.uploadImage(documents);
+			return dataAccess.uploadDocuments(documents);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
 	
-	public ArrayList<Documents> fetchImages(int applicationNo) {
-		try {
-			return dataAccess.fetchImages(applicationNo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	public ArrayList<Documents> fetchImages(int applicationNo) {
+//		try {
+//			return dataAccess.fetchImages(applicationNo);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	public boolean clogin(CustomerLogin clerk){
 		try {
@@ -227,6 +238,24 @@ public class Service {
 	public boolean mlogin(CustomerLogin manager){
 		try {
 			return dataAccess.mlogin(manager);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public int getCustomerId(@PathParam("userName") String userName){
+		try {
+			return dataAccess.getCustomerId(userName);	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public boolean resetPassword(ResetPassword reset){
+		try {
+			return dataAccess.resetPassword(reset);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

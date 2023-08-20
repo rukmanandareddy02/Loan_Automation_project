@@ -1,35 +1,29 @@
 package com.java.entities;
 
+import java.util.ArrayList;
+
 public class Documents {
-	int applicationNo;
-	String document1;
-	String document2;
+	int applicationId;
+	ArrayList<String> documents = new ArrayList<>();
 	public Documents() {
 		super();
 	}
-	public Documents(int applicationNo, String document1, String document2) {
+	public Documents(int applicationId, ArrayList<String> documents) {
 		super();
-		this.applicationNo = applicationNo;
-		this.document1 = document1;
-		this.document2 = document2;
+		this.applicationId = applicationId;
+		this.documents = documents;
 	}
-	public int getApplicationNo() {
-		return applicationNo;
+	public int getApplicationId() {
+		return applicationId;
 	}
-	public void setApplicationNo(int applicationNo) {
-		this.applicationNo = applicationNo;
+	public void setApplicationId(int applicationId) {
+		this.applicationId = applicationId;
 	}
-	public String getDocument1() {
-		return document1;
+	public ArrayList<String> getDocuments() {
+		return documents;
 	}
-	public void setDocument1(String document1) {
-		this.document1 = document1;
-	}
-	public String getDocument2() {
-		return document2;
-	}
-	public void setDocument2(String document2) {
-		this.document2 = document2;
+	public void setDocuments(ArrayList<String> documents) {
+		this.documents = documents;
 	}
 	
 

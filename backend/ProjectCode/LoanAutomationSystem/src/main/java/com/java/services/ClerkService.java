@@ -98,19 +98,80 @@ public class ClerkService {
 	}
 	
 	@GET
-	@Path("/cdocuments/{applicationNo}")
+	@Path("/loanapplicationsstatus/{status}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<ArrayList<Documents>> fetchImages(@PathParam("applicationNo") int applicationNo){
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByStatus(@PathParam("status") String status){
 		try {
-			ArrayList<Documents> docs = service.fetchImages(applicationNo);
-			if(docs.size()!=0)
-				return new ServiceResponse<ArrayList<Documents>>("data found",200,docs);
+			ArrayList<LoanApplication> applications= service.getApplicationsByStatus(status);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
 			else
-				return new ServiceResponse<ArrayList<Documents>>("data not found",404,docs);
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
 		} catch (Exception e) {
-			return new ServiceResponse<ArrayList<Documents>>(e.getMessage(),500,null);
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
 		}
 	}
+	
+	@GET
+	@Path("/loanapplicationsbydate/{date}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByDate(@PathParam("date") String date){
+		try {
+			ArrayList<LoanApplication> applications= service.getApplicationsByDate(date);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+	
+	@GET
+	@Path("/getloanapplication/{applicationNo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getLoanApplicationById(@PathParam("applicationNo") int applicationNo) {
+		try {
+			ArrayList<LoanApplication> applications = service.getLoanApplicationById(applicationNo);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+	@GET
+	@Path("/getapplication/{customerNo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByCId(@PathParam("customerNo") int customerNo) {
+		try {
+			ArrayList<LoanApplication> applications = service.getApplicationsByCId(customerNo);
+			if(applications.size()!=0)
+				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
+			else
+				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
+		} catch (Exception e) {
+			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
+		}
+	}
+	
+//	@GET
+//	@Path("/cdocuments/{applicationNo}")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public ServiceResponse<ArrayList<Documents>> fetchImages(@PathParam("applicationNo") int applicationNo){
+//		try {
+//			ArrayList<Documents> docs = service.fetchImages(applicationNo);
+//			if(docs.size()!=0)
+//				return new ServiceResponse<ArrayList<Documents>>("data found",200,docs);
+//			else
+//				return new ServiceResponse<ArrayList<Documents>>("data not found",404,docs);
+//		} catch (Exception e) {
+//			return new ServiceResponse<ArrayList<Documents>>(e.getMessage(),500,null);
+//		}
+//	}
 	
 	@POST
 	@Path("/clogin")
@@ -126,6 +187,22 @@ public class ClerkService {
 				
 		} catch (Exception e) {
 			return new ServiceResponse<Boolean>(e.getMessage(),500,null);
+		}
+	}
+	
+	@GET
+	@Path("/getcustomerid/{userName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<Integer> login(@PathParam("userName") String userName){
+		try {
+			int p=service.getCustomerId(userName);
+			if(p!=-1)
+				return new ServiceResponse<Integer>("data found",200,p);
+			else
+				return new ServiceResponse<Integer>("data not found",404,p);
+				
+		} catch (Exception e) {
+			return new ServiceResponse<Integer>(e.getMessage(),500,null);
 		}
 	}
 

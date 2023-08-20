@@ -1,85 +1,84 @@
 package com.java.entities;
 
 public class LoanApplication {
-	int applicationNo;
+	int applicationId;
 	int customerId;
 	String loanType;
-	int loanAmount;
+	String loanAmount;
+	int interest;
+	int tenure;
+	String emi;
 	String status;
-	String remarks;
-	int balance;
-
+	String date;
 	public LoanApplication() {
 		super();
 	}
-
-	public LoanApplication(int applicationNo, int customerId, String loanType, int loanAmount, String status,
-			String remarks, int balance) {
+	public LoanApplication(int applicationId, int customerId, String loanType, String loanAmount, int interest,
+			int tenure, String emi, String status, String date) {
 		super();
-		this.applicationNo = applicationNo;
+		this.applicationId = applicationId;
 		this.customerId = customerId;
 		this.loanType = loanType;
 		this.loanAmount = loanAmount;
+		this.interest = interest;
+		this.tenure = tenure;
+		this.emi = emi;
 		this.status = status;
-		this.remarks = remarks;
-		this.balance = balance;
+		this.date = date;
 	}
-
-	public int getApplicationNo() {
-		return applicationNo;
+	public int getApplicationId() {
+		return applicationId;
 	}
-
-	public void setApplicationNo(int applicationNo) {
-		this.applicationNo = applicationNo;
+	public void setApplicationId(int applicationId) {
+		this.applicationId = applicationId;
 	}
-
 	public int getCustomerId() {
 		return customerId;
 	}
-
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}
-
 	public String getLoanType() {
 		return loanType;
 	}
-
 	public void setLoanType(String loanType) {
 		this.loanType = loanType;
 	}
-
-	public int getLoanAmount() {
+	public String getLoanAmount() {
 		return loanAmount;
 	}
-
-	public void setLoanAmount(int loanAmount) {
+	public void setLoanAmount(String loanAmount) {
 		this.loanAmount = loanAmount;
 	}
-
+	public int getInterest() {
+		return interest;
+	}
+	public void setInterest(int interest) {
+		this.interest = interest;
+	}
+	public int getTenure() {
+		return tenure;
+	}
+	public void setTenure(int tenure) {
+		this.tenure = tenure;
+	}
+	public String getEmi() {
+		return emi;
+	}
+	public void setEmi(String emi) {
+		this.emi = emi;
+	}
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
 		this.status = status;
 	}
-
-	public String getRemarks() {
-		return remarks;
+	public String getDate() {
+		return date;
 	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
+	public void setDate(String date) {
+		this.date = date;
 	}
-
-	public int getBalance() {
-		return balance;
-	}
-
-	public void setBalance(int balance) {
-		this.balance = balance;
-	}
-
 
 }

@@ -1,0 +1,11 @@
+package com.java.entities;
+
+public class Customer {
+	int customerId;
+	String firstName;
+	String lastName;
+	String gender;
+	String address;
+	String mobileNumber;
+
+}
