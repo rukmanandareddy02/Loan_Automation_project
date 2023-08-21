@@ -20,9 +20,12 @@ import jakarta.ws.rs.core.MediaType;
 public class ManagerService {
 	
 	Service service = new Service();
-	public ServiceResponse<Boolean> sendMail() {
+	@GET
+	@Path("/sendmail/{applicationNo}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ServiceResponse<Boolean> sendMail(@PathParam("applicationNo") int applicationNo) {
 		try {
-			boolean flag = service.sendMail();
+			boolean flag = service.sendMail(applicationNo);
 			if(flag==true)
 				return new ServiceResponse<Boolean>("data sent",200,flag);
 			else

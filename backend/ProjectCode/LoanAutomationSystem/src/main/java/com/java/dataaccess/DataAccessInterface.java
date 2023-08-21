@@ -34,6 +34,6 @@ public interface DataAccessInterface {
 	//boolean resetPassword(CustomerLogin reset) throws Exception;
 	ArrayList<LoanApplication> getApplicationsByDate(String date) throws Exception;
 	boolean resetPassword(ResetPassword reset) throws Exception;
-	void sendMail(int applicationNo) throws Exception;
+	boolean sendMail(int applicationNo) throws Exception;
 
 }

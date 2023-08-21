@@ -261,5 +261,14 @@ public class Service {
 		}
 		return false;
 	}
+	
+	public boolean sendMail(int applicationNo) {
+		try {
+			return dataAccess.sendMail(applicationNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 }

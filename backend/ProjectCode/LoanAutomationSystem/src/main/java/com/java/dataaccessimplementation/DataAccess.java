@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -255,46 +256,89 @@ public class DataAccess implements DataAccessInterface {
 	}
 
 	@Override
-	public void sendMail(int applicationNo) throws Exception {
+	public boolean sendMail(int applicationNo) throws Exception {
 		// TODO Auto-generated method stub
-		Properties properties = new Properties();
-		properties.put("mail.smtp.host", "smtp.office365.com");
-		properties.put("mail.smtp.port", "587");
-		properties.put("mail.smtp.auth", "true");
-		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.ssl.trust", "smtp.office365.com");
-		//properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+//		Properties properties = new Properties();
+//		properties.put("mail.smtp.host", "smtp.office365.com");
+//		properties.put("mail.smtp.port", "587");
+//		properties.put("mail.smtp.auth", "true");
+//		properties.put("mail.smtp.starttls.enable", "true");
+//		properties.put("mail.smtp.ssl.trust", "smtp.office365.com");
+//		//properties.put("mail.smtp.ssl.enable", "true");
+//		//properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+//
+//		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+//			protected PasswordAuthentication getPasswordAuthentication() {
+//				return new PasswordAuthentication("rukmanandareddyabbidi@outlook.com", "Rukku@9802!");
+//			}
+//		});
+//		try {
+//			ps = connection.prepareStatement(
+//					"SELECT EMAIL FROM CUSTOMER_LOGIN WHERE CUSTOMER_ID=(SELECT CUSTOMER_ID FROM LOAN_APPLICATION WHERE APPLICATION_ID=?)");
+//			ps.setInt(1, applicationNo);
+//			String mail=null;
+//			try {
+//			ResultSet res = ps.executeQuery();
+//			if(res.next())
+//				mail=res.getString(1);
+//			else
+//				return false;
+//			}catch(SQLException e) {
+//				throw e;
+//			}
+//			Message message = new MimeMessage(session);
+//			message.setFrom(new InternetAddress("rukmanandareddyabbidi@outlook.com"));
+//			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+//			message.setSubject("Loan Approved");
+//			message.setText("Your Loan Application with Application No " + applicationNo + " is approved");
+//			// Send the message
+//			Transport.send(message);
+//			// System.out.println("Email sent successfully.");
+//		} catch (MessagingException e) {
+//			throw e;
+//		}
+		String host = "smtp.gmail.com";
+        final String username = "manishssssskumaraaaaa@gmail.com"; // Replace with your Gmail email
+        final String password = "osbzpdwcdbexonng"; // Replace with your Gmail password
 
-		Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication("your email", "your password");
-			}
-		});
-		try {
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.socketFactory.port", "465"); //SSL Port
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory"); //SSL Factory Class
+		props.put("mail.smtp.auth", "true"); //Enabling SMTP Authentication
+		props.put("mail.smtp.port", "465"); //SMTP Port
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
 			ps = connection.prepareStatement(
-					"SELECT EMAIL FROM CUSTOMERS WHERE CUSTOMER_ID=(SELECT CUSTOMER_ID FROM LOAN_APPLICATION WHERE APPLICATION_ID=?)");
+					"SELECT EMAIL FROM CUSTOMER_LOGIN WHERE CUSTOMER_ID=(SELECT CUSTOMER_ID FROM LOAN_APPLICATION WHERE APPLICATION_ID=?)");
 			ps.setInt(1, applicationNo);
 			String mail=null;
 			try {
 			ResultSet res = ps.executeQuery();
-			while(res.next()) {
+			if(res.next())
 				mail=res.getString(1);
-			}
+			else
+				return false;
 			}catch(SQLException e) {
 				throw e;
 			}
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("your email"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
-			message.setSubject("Loan Approved");
-			message.setText("Your Loan Application with Application No " + applicationNo + " is approved");
-			// Send the message
-			Transport.send(message);
-			// System.out.println("Email sent successfully.");
-		} catch (MessagingException e) {
-			throw e;
-		}
-		return;
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mail));
+        message.setSubject("LOAN APPROVED");
+        message.setText("Your Loan Application with Application No " + applicationNo + " is approved");
+        Transport.send(message);
+        }catch(MessagingException e) {
+        	throw e;
+        }
+	return true;
 	}
 
 	@Override
