@@ -337,7 +337,7 @@ public class DataAccess implements DataAccessInterface {
 			while(res.next()) {
 				StringBuffer buf = new StringBuffer();
 				String temp = null;
-				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document").getBinaryStream()));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document1").getBinaryStream()));
 				while((temp = reader.readLine())!=null) {
 					buf.append(temp);
 				}

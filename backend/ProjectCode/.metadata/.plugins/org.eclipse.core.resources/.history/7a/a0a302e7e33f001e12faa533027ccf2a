@@ -158,7 +158,7 @@ public class ClerkService {
 		}
 	}
 	
-	@GET
+//	@GET
 	@Path("/cdocuments/{applicationNo}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ServiceResponse<ArrayList<String>> fetchImages(@PathParam("applicationNo") int applicationNo){

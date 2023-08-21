@@ -331,13 +331,13 @@ public class DataAccess implements DataAccessInterface {
 	public ArrayList<String> fetchImages(int applicationNo) throws Exception{
 		ArrayList<String> docs = new ArrayList<>();
 		try {
-			ps = connection.prepareStatement("select document from loan_documents where application_id=?");
+			ps = connection.prepareStatement("select documents from loan_documents where application_id=?");
 			ps.setInt(1, applicationNo);
 			ResultSet res = ps.executeQuery();
 			while(res.next()) {
 				StringBuffer buf = new StringBuffer();
 				String temp = null;
-				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document").getBinaryStream()));
+				BufferedReader reader = new BufferedReader(new InputStreamReader(res.getBlob("document1").getBinaryStream()));
 				while((temp = reader.readLine())!=null) {
 					buf.append(temp);
 				}
