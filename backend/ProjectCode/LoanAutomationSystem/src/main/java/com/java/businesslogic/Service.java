@@ -121,14 +121,14 @@ public class Service {
 		return null;
 	}
 	
-	public boolean sendMail() {
-		try {
-			return dataAccess.sendMail();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
+//	public boolean sendMail() {
+//		try {
+//			return dataAccess.sendMail();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return false;
+//	}
 	
 //	@GET
 //	@Path("/onecapplication/{customerNo}")

@@ -10,11 +10,12 @@ public class LoanApplication {
 	String emi;
 	String status;
 	String date;
+	String document;
 	public LoanApplication() {
 		super();
 	}
 	public LoanApplication(int applicationId, int customerId, String loanType, String loanAmount, int interest,
-			int tenure, String emi, String status, String date) {
+			int tenure, String emi, String status, String date,String document) {
 		super();
 		this.applicationId = applicationId;
 		this.customerId = customerId;
@@ -25,6 +26,7 @@ public class LoanApplication {
 		this.emi = emi;
 		this.status = status;
 		this.date = date;
+		this.document=document;
 	}
 	public int getApplicationId() {
 		return applicationId;
@@ -79,6 +81,12 @@ public class LoanApplication {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public String getDocument() {
+		return document;
+	}
+	public void setDocument(String document) {
+		this.document = document;
 	}
 
 }

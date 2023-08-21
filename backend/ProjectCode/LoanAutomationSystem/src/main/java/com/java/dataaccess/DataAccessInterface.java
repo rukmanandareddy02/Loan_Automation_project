@@ -17,7 +17,7 @@ public interface DataAccessInterface {
 	ArrayList<LoanApplication> getLoanApplicationById(int applicationNo) throws Exception;
 	ArrayList<Loan> browseLoans() throws Exception;
 	ArrayList<LoanApplication> getAllApplications() throws Exception;
-	boolean sendMail() throws Exception;
+	//boolean sendMail() throws Exception;
 	ArrayList<LoanApplication> getLoanApplications(String loanType) throws Exception;
 	ArrayList<LoanApplication> getApplicationsByCId(int customerId) throws Exception;
 	ArrayList<LoanApplication> getApplicationsByStatus(String status) throws Exception;
@@ -34,6 +34,6 @@ public interface DataAccessInterface {
 	//boolean resetPassword(CustomerLogin reset) throws Exception;
 	ArrayList<LoanApplication> getApplicationsByDate(String date) throws Exception;
 	boolean resetPassword(ResetPassword reset) throws Exception;
-	
+	void sendMail(int applicationNo) throws Exception;
 
 }
