@@ -173,5 +173,16 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Rukmananda/Documents/GitHub/Loan_Automation_project/backend/ProjectCode/LoanAutomationSystem/src/main/webapp/WEB-INF/lib/hamcrest-core-2.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Rukmananda/Documents/GitHub/Loan_Automation_project/backend/ProjectCode/LoanAutomationSystem/src/main/webapp/WEB-INF/lib/junit-4.13.2.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

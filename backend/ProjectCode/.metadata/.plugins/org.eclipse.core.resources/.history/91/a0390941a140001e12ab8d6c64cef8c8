@@ -1,0 +1,16 @@
+package com.java.tests;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+
+public class DataAccessTests {
+	private static DataAccess dataAccess;
+	@BeforeClass
+	public static void initialize() {
+
+	@AfterClass
+	public static void cleanUp() {
+		dataAccess = new DataAccess();
+	}
+
+}

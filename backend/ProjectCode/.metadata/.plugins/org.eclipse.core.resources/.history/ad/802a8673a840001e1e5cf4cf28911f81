@@ -1,0 +1,46 @@
+package com.java.tests;
+
+import java.util.ArrayList;
+
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.java.dataaccessimplementation.DataAccess;
+import com.java.entities.Customer;
+
+public class DataAccessTests {
+	private static DataAccess dataAccess;
+
+	@BeforeClass
+	public static void initialize() {
+		System.out.println("fds");
+		dataAccess = new DataAccess();
+	}
+
+	@AfterClass
+	public static void cleanUp() {
+		dataAccess = null;
+	}
+	
+	@Test
+	public void viewCustomerDetailsById(int customerId){
+		System.out.println("jhey");
+		ArrayList<Customer> customers=null;
+		try {
+			customers = dataAccess.viewCustomerDetailsById(33);
+			Customer expectedCustomer = new Customer(33, "rukku", "abbidi", "m","hyd","8688346309");
+			Assert.assertEquals(expectedCustomer.getCustomerId(), customers.get(0).getCustomerId());
+			Assert.assertEquals(expectedCustomer.getFirstName(), customers.get(0).getFirstName());
+			Assert.assertEquals(expectedCustomer.getLastName(), customers.get(0).getLastName());
+			Assert.assertEquals(expectedCustomer.getGender(), customers.get(0).getGender());
+			Assert.assertEquals(expectedCustomer.getAddress(), customers.get(0).getAddress());
+			Assert.assertEquals(expectedCustomer.getMobileNumber(), customers.get(0).getMobileNumber());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

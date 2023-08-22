@@ -3,7 +3,6 @@
     <fullyQualifiedTypeName name="jakarta.ws.rs.ext.Provider"/>
     <fullyQualifiedTypeName name="jakarta.ws.rs.Path"/>
     <fullyQualifiedTypeName name="com.java.businesslogic.Service"/>
-    <fullyQualifiedTypeName name="com.java.entities.CustomerLogin"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.java.services.ServiceResponse"/>
     <fullyQualifiedTypeName name="jakarta.ws.rs.DELETE"/>
@@ -14,7 +13,6 @@
     <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
     <fullyQualifiedTypeName name="com.java.entities.Documents"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.java.entities.ResetPassword"/>
     <fullyQualifiedTypeName name="java.util.Properties"/>
     <fullyQualifiedTypeName name="javax.mail.Session"/>
@@ -26,4 +24,14 @@
     <fullyQualifiedTypeName name="jakarta.ws.rs.PathParam"/>
     <fullyQualifiedTypeName name="javax.mail.Authenticator"/>
     <fullyQualifiedTypeName name="javax.mail.MessagingException"/>
+    <fullyQualifiedTypeName name="org.junit.BeforeClass"/>
+    <fullyQualifiedTypeName name="org.junit.AfterClass"/>
+    <fullyQualifiedTypeName name="com.java.tests.DataAccessTests"/>
+    <fullyQualifiedTypeName name="com.java.dataaccessimplementation.DataAccess"/>
+    <fullyQualifiedTypeName name="org.junit.Test"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.java.entities.Customer"/>
+    <fullyQualifiedTypeName name="org.junit.Assert"/>
+    <fullyQualifiedTypeName name="com.java.entities.LoanApplication"/>
+    <fullyQualifiedTypeName name="com.java.entities.CustomerLogin"/>
 </qualifiedTypeNameHistroy>
