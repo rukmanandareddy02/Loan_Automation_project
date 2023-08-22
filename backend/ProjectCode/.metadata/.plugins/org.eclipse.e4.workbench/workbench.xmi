@@ -588,7 +588,7 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_ykpc_TwTEe60Wrf2A621mA" elementId="org.eclipse.ui.editorss" selectedElement="_ykpc_jwTEe60Wrf2A621mA">
-      <children xsi:type="basic:PartStack" xmi:id="_ykpc_jwTEe60Wrf2A621mA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_eG4XkECgEe63OqKo8SfDzg">
+      <children xsi:type="basic:PartStack" xmi:id="_ykpc_jwTEe60Wrf2A621mA" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_ykpdDzwTEe60Wrf2A621mA">
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <children xsi:type="basic:Part" xmi:id="_ykpdBzwTEe60Wrf2A621mA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="LoanApplication.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
@@ -604,7 +604,7 @@
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_ykpdDzwTEe60Wrf2A621mA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="DataAccess.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;DataAccess.java&quot; partName=&quot;DataAccess.java&quot; title=&quot;DataAccess.java&quot; tooltip=&quot;LoanAutomationSystem/src/main/java/com/java/dataaccessimplementation/DataAccess.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/LoanAutomationSystem/src/main/java/com/java/dataaccessimplementation/DataAccess.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;8&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;3365&quot; selectionTopPixel=&quot;2495&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;DataAccess.java&quot; partName=&quot;DataAccess.java&quot; title=&quot;DataAccess.java&quot; tooltip=&quot;LoanAutomationSystem/src/main/java/com/java/dataaccessimplementation/DataAccess.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/LoanAutomationSystem/src/main/java/com/java/dataaccessimplementation/DataAccess.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;8&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;3365&quot; selectionTopPixel=&quot;1021&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
@@ -688,7 +688,7 @@
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_eG4XkECgEe63OqKo8SfDzg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="DataAccessTests.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;DataAccessTests.java&quot; partName=&quot;DataAccessTests.java&quot; title=&quot;DataAccessTests.java&quot; tooltip=&quot;LoanAutomationSystem/src/main/java/com/java/tests/DataAccessTests.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/LoanAutomationSystem/src/main/java/com/java/tests/DataAccessTests.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2020&quot; selectionTopPixel=&quot;2616&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;DataAccessTests.java&quot; partName=&quot;DataAccessTests.java&quot; title=&quot;DataAccessTests.java&quot; tooltip=&quot;LoanAutomationSystem/src/main/java/com/java/tests/DataAccessTests.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/LoanAutomationSystem/src/main/java/com/java/tests/DataAccessTests.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2020&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
@@ -1041,8 +1041,14 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_gHELQUAfEe6F1bfQ1Ky6Eg" elementId="org.eclipse.debug.ui.PHPBrowserOutput" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Browser Output" iconURI="platform:/plugin/org.eclipse.php.debug.ui/icon/full/obj16/browser_output.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.php.debug.ui"/>
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.php.internal.debug.ui.views.DebugBrowserView"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view/>"/>
       <tags>View</tags>
       <tags>categoryTag:PHP Tools</tags>
+      <menus xmi:id="_3O9FEEDpEe6bXNloVAH2DQ" elementId="org.eclipse.debug.ui.PHPBrowserOutput">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_3O9FEUDpEe6bXNloVAH2DQ" elementId="org.eclipse.debug.ui.PHPBrowserOutput" visible="false"/>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_gHELQkAfEe6F1bfQ1Ky6Eg" elementId="org.eclipse.datatools.sqltools.result.resultView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="SQL Results" iconURI="platform:/plugin/org.eclipse.datatools.sqltools.result.ui/icons/sqlresult.gif" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.datatools.sqltools.result.ui"/>
@@ -1057,7 +1063,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ykqDOzwTEe60Wrf2A621mA" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_cBrhcECnEe6-a4HYW2f3fA" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_ykr7bTwTEe60Wrf2A621mA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_eNd9kEDpEe6bXNloVAH2DQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_ykr7bTwTEe60Wrf2A621mA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ykqDSDwTEe60Wrf2A621mA" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1097,7 +1103,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ykqDsTwTEe60Wrf2A621mA" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_cBwZ8ECnEe6-a4HYW2f3fA" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_ykr7ADwTEe60Wrf2A621mA"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_eNhA4EDpEe6bXNloVAH2DQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_ykr7ADwTEe60Wrf2A621mA"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_ykqDvjwTEe60Wrf2A621mA" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
