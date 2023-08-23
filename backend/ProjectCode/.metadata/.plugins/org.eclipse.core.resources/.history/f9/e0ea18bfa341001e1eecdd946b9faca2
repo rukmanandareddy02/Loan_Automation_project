@@ -50,21 +50,6 @@ public class ManagerService {
 		}
 	}
 	
-	
-	@GET
-	@Path("/getapplication/{customerNo}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public ServiceResponse<ArrayList<LoanApplication>> getApplicationsByCId(@PathParam("customerNo") int customerNo) {
-		try {
-			ArrayList<LoanApplication> applications = service.getApplicationsByCId(customerNo);
-			if(applications.size()!=0)
-				return new ServiceResponse<ArrayList<LoanApplication>>("data found",200,applications);
-			else
-				return new ServiceResponse<ArrayList<LoanApplication>>("data not found",404,applications);
-		} catch (Exception e) {
-			return new ServiceResponse<ArrayList<LoanApplication>>(e.getMessage(),500,null);
-		}
-	}
 	@GET
 	@Path("/loanapplications/{loantype}")
 	@Produces(MediaType.APPLICATION_JSON)

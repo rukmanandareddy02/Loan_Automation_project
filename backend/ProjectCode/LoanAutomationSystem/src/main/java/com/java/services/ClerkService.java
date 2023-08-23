@@ -127,7 +127,6 @@ public class ClerkService {
 		}
 	}
 	
-	
 	@GET
 	@Path("/getloanapplication/{applicationNo}")
 	@Produces(MediaType.APPLICATION_JSON)
